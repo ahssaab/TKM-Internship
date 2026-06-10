@@ -1,4 +1,4 @@
-# 🔓 2-to-4 Decoder (Verilog HDL)
+# 🔓 2-to-4 Decoder 
 
 ## 📌 Overview
 
