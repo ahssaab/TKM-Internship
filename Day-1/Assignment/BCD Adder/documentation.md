@@ -1,22 +1,18 @@
 # BCD Adder (Binary Coded Decimal) – Verilog HDL
 
 ##  Overview
-This project implements a **BCD Adder** using Verilog HDL.
-It adds two BCD digits and corrects the result if it exceeds 9 by adding 6 (0110).
-
-It uses a **Ripple Carry Adder** + correction logic.
+A BCD (Binary Coded Decimal) counter is a sequential digital circuit that cycles through the decimal digits 0 to 9 using a 4-bit binary representation. Once the counter reaches 1001 (9), it automatically resets to 0000 on the next clock pulse and generates a carry-out signal to trigger the next decimal stage.
 
 ##  Features
 - 4-bit BCD addition
-- Ripple carry adder based design
-- Automatic decimal correction
 - Carry generation support
+- Automatic decimal correction
 - Simulation verified using testbench
 
 ##  Working Principle
 1. Add two BCD digits using binary addition
-2. Check if result > 9 or carry = 1
-3. If invalid → add 0110 correction
+2. Check if result is greater than 9 or carry = 1
+3. If invalid → add 0110 for correction
 4. Output corrected BCD sum
 
 ##  Inputs and Outputs
