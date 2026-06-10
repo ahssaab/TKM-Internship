@@ -37,6 +37,8 @@ A BCD (Binary Coded Decimal) counter is a sequential digital circuit that cycles
 | 1001 | 1001 | 0 | 10010 | Yes | 1001 | 1 | Maximum case |
 
 ## Waveform Explanation
+<img width="1230" height="616" alt="image" src="https://github.com/user-attachments/assets/1e04cfa2-3e0a-4e5d-9666-a223c29ddb9c" />
+
 - First stage performs binary addition
 - Second stage checks correction condition
 - If sum > 9 → adds 0110
