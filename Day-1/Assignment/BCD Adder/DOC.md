@@ -1,4 +1,4 @@
-# BCD Adder (Binary Coded Decimal) – Verilog HDL
+# BCD Adder (Binary Coded Decimal) 
 
 ##  Overview
 A BCD (Binary Coded Decimal) counter is a sequential digital circuit that cycles through the decimal digits 0 to 9 using a 4-bit binary representation. Once the counter reaches 1001 (9), it automatically resets to 0000 on the next clock pulse and generates a carry-out signal to trigger the next decimal stage.
