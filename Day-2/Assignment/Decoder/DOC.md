@@ -1,16 +1,15 @@
-# 🔓 2-to-4 Decoder 
+#  2-to-4 Decoder 
 
-## 📌 Overview
+##  Overview
 
-This project implements a **2-to-4 Decoder** using **Verilog HDL**.
+**2-to-4 Decoder – Overview**
 
-It converts a **2-bit binary input** into a **one-hot 4-bit output**.
+A 2-to-4 decoder is a combinational logic circuit that converts a 2-bit binary input into one of four unique output lines. For each input combination, only one output is activated while the remaining outputs stay inactive. It is commonly used in memory addressing and data routing applications.
 
-Only one output line is activated for each valid input combination.
 
 ---
 
-## ⚙️ Features
+##  Features
 
 - 2-to-4 decoding
 - Combinational logic design
@@ -22,7 +21,7 @@ Only one output line is activated for each valid input combination.
 ---
 
 
-## 🔌 Inputs and Outputs
+##  Inputs and Outputs
 
 ### Inputs
 
@@ -36,7 +35,7 @@ Only one output line is activated for each valid input combination.
 
 
 
-## 🧪 Test Cases
+##  Test Cases
 
 | Input (b) | Output (d) | Description |
 |-----------|------------|-------------|
@@ -47,7 +46,7 @@ Only one output line is activated for each valid input combination.
 
 ---
 
-## 📊 Waveform Explanation
+##  Waveform Explanation
 
 - Input `00` → Output `0001`
 - Input `01` → Output `0010`
