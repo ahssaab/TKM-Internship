@@ -1,4 +1,4 @@
-#  D Flip-Flop (D FF) – Verilog HDL
+#  D Flip-Flop (D FF) 
 
 ##  Overview
 A D (Data) Flip-Flop is a sequential digital circuit used to store one bit of data. It captures the input value (D) on the active edge of the clock signal and holds that value at the output (Q) until the next clock edge. It is widely used in registers, counters, and memory circuits.
