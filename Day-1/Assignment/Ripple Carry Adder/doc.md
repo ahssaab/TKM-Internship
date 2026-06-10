@@ -1,14 +1,10 @@
 #  4-bit Ripple Carry Adder (Verilog HDL)
 
 ##  Overview
-This project implements a **4-bit Ripple Carry Adder** using Verilog HDL.
-It performs binary addition of two 4-bit inputs along with a carry-in.
-The design is built using full adders connected in series, where carry propagates from LSB to MSB.
+A 4-bit ripple carry adder uses four cascaded full adders to perform binary addition, where the carry-out from each bit serves as the carry-in for the next significant bit. This sequential propagation allows the device to process multi-bit numbers, though it introduces a time delay proportional to the number of bits as the carry "ripples" through the circuit.
 
 ##  Features
 - 4-bit binary addition
-- Carry-in support
-- Modular full adder design
 - Ripple carry propagation
 - Simulation verified using testbench
 
