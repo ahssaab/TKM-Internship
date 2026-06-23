@@ -2,16 +2,18 @@
 
 This document provides the microarchitectural design specification for the Secure Bandwidth Throttler IP. The architecture utilizes a closed-loop system layout running within a single master clock domain to protect downstream components from high-speed data floods.
 
-1. Top-Level Architecture Overview
+## 1. Top-Level Architecture Overview
 The design consists of a sequential data processing pipeline combined with a parallel feedback control loop.
 
 Data Pipeline Flow
 Data flows sequentially through the following modules:
 <img width="1400" height="720" alt="WORKFLOWfnl" src="https://github.com/user-attachments/assets/7d02c7af-bec4-4bc9-aafe-5cdd03cf4172" />
 
-2. Component Layout and Functional Microarchitecture
+## 2. Component Layout and Functional Microarchitecture
 <img width="1073" height="486" alt="ARCHITECTURALDGMfnl" src="https://github.com/user-attachments/assets/4bff8759-8c6f-4c1d-a46c-ab699f4be995" />
+
 A. Input Stage (axis_reg_slice)
+
 Purpose: Acts as the physical isolation layer at the input boundary of the IP block to cut long, high-fanout combinational paths from external pins.
 Hardware Latency: Introduces a predictable, single clock cycle propagation delay forward.
 Internal Block Logic:
@@ -20,6 +22,7 @@ Handshake Routing: Under normal operation, it registers incoming valid data dire
 Backpressure Management: If the downstream FIFO buffer pulls its ready line low (slice_to_fifo_tready == 0), the register slice isolates the system by capturing any in-flight data word inside skid_reg on the next clock edge and immediately dropping the external s_axis_tready signal. This safely freezes the external sender.
 
 B. Elastic Memory Buffer (axis_fifo)
+
 Purpose: An internal buffer that absorbs traffic bursts while the output side is undergoing rate regulation or experiencing total blockage.
 Structure: A 512-word deep internal RAM grid with a 37-bit payload width (
 32
@@ -55,6 +58,7 @@ Occupancy Math: Tracks pointer locations via a write pointer (wr_ptr_reg) and a 
 Simulation Initialization Loop: On the assertion of a reset (rst), an internal loop automatically writes zeros across all 512 memory indices to neutralize uninitialized simulation states ("Red X").
 
 C. Bandwidth Regulator (axis_rate_limit)
+
 Purpose: Acts as the active system throttle valve to enforce strict throughput caps based on feedback commands.
 Internal Block Logic:
 Reads the 8-bit pacing fraction coefficients (rate_num and rate_denom) issued dynamically by the state machine.
@@ -62,6 +66,7 @@ Pacing Pattern Generator: An internal wrap-around counter counts sequentially fr
 Wait-State Injection: Instead of destructively dropping packets, it cuts throughput by modulating its upstream ready handshake line. When a 25% throughput cap is applied (01 / 04), the limiter logic holds its ready line high for exactly 1 clock cycle and forces it low for the next 3 clock cycles. This injects wait-states backwards into the pipeline, causing excess data to gather safely inside the upstream FIFO.
 
 D. Traffic Monitor (axis_stat_counter)
+
 Purpose: Sits passively on the master boundary to serve as a zero-overhead exit flow meter.
 Internal Block Logic:
 Passive Accumulation: Continuously snoops on successful output transfers by checking if both master handshake lines are high (m_axis_tvalid && m_axis_tready).
@@ -69,6 +74,7 @@ Windowed Calculation: An internal tracking counter measures a fixed observation 
 FSM Interfacing: The moment the observation window timer expires, the block pulses a status_valid signal, exposes the total byte sum on the status_byte_count bus to update the state machine, and clears its internal accumulators back to zero for the next cycle.
 
 E. Central Controller (rate_control_fsm)
+
 Purpose: The centralized command center linking monitoring metrics to active pacing gates.
 
 State Logic & Conditions:
